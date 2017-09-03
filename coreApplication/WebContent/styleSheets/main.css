@@ -1,0 +1,78 @@
+@CHARSET "ISO-8859-1";
+body {
+	background-image: url("../Resources/city.jpg");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	color: white;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+.banner {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 55px;
+	text-align: center;
+}
+
+.initial {
+	font-weight: bold;
+	font-size: 150%;
+}
+#name {
+	padding: 15px;
+	color: rgba(51, 204, 255, 0.8);
+	font-family: Palatino, ‘Book Antiqua’, Georgia, Garamond, ‘Times New Roman’, Times, serif;
+}
+.banner hr {
+	width: 90%;
+	size: 1;
+	color: rgb(128, 128, 128);
+}
+.mainNav {
+    list-style:none;
+    margin:0;
+    padding:0;
+    text-align:center;
+    padding-top: 5px;
+    font-size: 115%;
+    
+}
+.mainNav li {
+	display: inline;
+	margin-left: 5%;
+	margin-right: 5%;
+
+}
+.mainNav span {
+	background-color: rgba(128, 128, 128, 0.6);
+	padding: 0.5%;
+}
+.mainNav a {
+	text-decoration: none;
+	diplay: inline-block;
+	color: inherit;
+}
+.mainNav a:hover {
+	font-style: italic;
+}
+#selected {
+	font-variant: small-caps;
+	font-style: normal;
+}
+#content {
+	width: 75%;
+	min-height: 500px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: rgba(50, 50, 50, 0.5);
+}
+#content > * {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+#content:first-child {
+	padding-top: 15px;
+}
+p a {
+	text-decoration: none;
+	color: rgb(51, 204, 255);
+}

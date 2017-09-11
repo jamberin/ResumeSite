@@ -52,7 +52,7 @@ public class JavaEmail {
 		}
 	}
 
-	public void sendEmail() {
+	public void sendEmail() throws MessagingException{
 		try {
 			DefaultLogger.logMsg("Starting send email", "INFO");
 			Transport transport = mailSession.getTransport("smtp");
@@ -61,8 +61,6 @@ public class JavaEmail {
 			transport.close();
 		} catch (AddressException e) {
 			DefaultLogger.logMsg("JavaEmail.sendEmail() - AddressException: " + e.getMessage(), "ERROR");
-		} catch (MessagingException e) {
-			DefaultLogger.logMsg("JavaEmail.sendEmail() - MessagingException: " + e.getMessage(), "ERROR");
 		} finally {
 			DefaultLogger.logMsg("Completed send email", "INFO");
 		}

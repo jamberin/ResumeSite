@@ -1,4 +1,5 @@
 "External Jar Files/"
 coreApplication/AppLogs/
+coreApplication/.classpath
 .metadata/
 Servers/

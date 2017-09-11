@@ -17,7 +17,20 @@ public class DefaultLogger {
 	
 	static String defaultLocation = "../AppLogs/default.log";
 	
-	public static void writeError (String stackTrace, int lineNumber) {
+	public static void logMsg (String message, String level) {
+		if (level == "INFO" || level == "INF") {
+			writeInfo(message);
+			
+		} else if (level == "WARN" || level == "WAR") {
+			writeWarn(message);
+		} else if (level == "ERROR" || level == "ERR") {
+			writeError(message);
+		} else {
+			System.err.println(level + " is not a valid log level!");
+		}
+	}
+	
+	public static void writeError (String message) {
 		Logger logger = Logger.getLogger("Log");
 		FileHandler fh;
 		
@@ -27,7 +40,7 @@ public class DefaultLogger {
 			SimpleFormatter formatter = new SimpleFormatter();
 			fh.setFormatter(formatter);
 			
-			logger.info("ERROR | " + );
+			logger.info("ERR | " + getDateTime() + message);
 		} catch (SecurityException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -35,12 +48,47 @@ public class DefaultLogger {
 		}
 	}
 	
-	public static Calendar getDateTime () {
+	public static void writeWarn (String message) {
+		Logger logger = Logger.getLogger("Log");
+		FileHandler fh;
+		
+		try {
+			fh = new FileHandler(defaultLocation);
+			logger.addHandler(fh);
+			SimpleFormatter formatter = new SimpleFormatter();
+			fh.setFormatter(formatter);
+			
+			logger.info("WAR | " + getDateTime() + message);
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void writeInfo (String message) {
+		Logger logger = Logger.getLogger("Log");
+		FileHandler fh;
+		
+		try {
+			fh = new FileHandler(defaultLocation);
+			logger.addHandler(fh);
+			SimpleFormatter formatter = new SimpleFormatter();
+			fh.setFormatter(formatter);
+			
+			logger.info("INF | " + getDateTime() + message);
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static String getDateTime () {
 		Calendar cal = Calendar.getInstance();
 		DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		String dt = sdf.format(cal.getTime());
-		
-		return null;
+		return dt;
 	}
 	
 	public static void main(String[] args) {

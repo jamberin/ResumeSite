@@ -57,6 +57,10 @@ body {
 	font-variant: small-caps;
 	font-style: normal;
 }
+#resumeConent {
+	width: 75%;
+	height: auto;
+}
 #content {
 	width: 75%;
 	min-height: 500px;

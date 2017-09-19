@@ -20,5 +20,7 @@
 		</span>
 	</ul>
 </div>
+<iframe src="https://docs.google.com/viewer?srcid=0B7lPGxCWn96Dbk1DaEZORFBpb28&pid=explorer&efh=false&a=v&chrome=false&embedded=true" width="580px" height="480px"></iframe>
+<!-- <embed id="resumeContent" src="${pageContext.request.contextPath}/Resources/Resume041317.pdf"/>  -->
 </body>
 </html>

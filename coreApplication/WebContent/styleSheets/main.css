@@ -57,6 +57,11 @@ body {
 	font-variant: small-caps;
 	font-style: normal;
 }
+#resume {
+	padding-top: 15px;
+	width: 675px;
+	height: 675px;
+}
 #content {
 	width: 75%;
 	min-height: 500px;

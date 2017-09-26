@@ -24,5 +24,9 @@
 		<li class="list-group-item"><a href="${pageContext.request.contextPath}/contact.jsp">Contact</a></li>
 	</ul>
 </div>
+<!-- <iframe id="resume" src="https://docs.google.com/viewer?srcid=0B7lPGxCWn96Dbk1DaEZORFBpb28&pid=explorer&efh=false&a=v&chrome=false&embedded=true" width="580px" height="480px"></iframe> -->
+<center>
+	<embed id="resume" src="${pageContext.request.contextPath}/Resources/Resume041317.pdf" type="application/pdf"/>
+</center>
 </body>
 </html>

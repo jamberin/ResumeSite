@@ -34,3 +34,9 @@ ul.list-group {
 	color: grey !important;
 	font-style: normal !important;
 }
+
+#resume {
+	padding-top: 15px;
+	width: 675px;
+	height: 675px;
+}

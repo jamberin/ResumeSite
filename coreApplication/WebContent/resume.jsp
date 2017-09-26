@@ -1,23 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/styleSheets/main.css" type="text/css"/>
+<html lang="en">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/styleSheets/main.css"  type="text/css" media="all"/>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/styleSheets/bootstrap.css"  type="text/css" media="all"/>
+
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+<script src="${pageContext.request.contextPath}/Resources/js/bootstrap.min.js"></script>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>James Beringer | Resume</title>
 </head>
 <body>
-<div class="banner">
-	<h1><span id="name"><span class="initial">J</span>ames <span class="initial">W</span>illiam <span class="initial">B</span>eringer</span></h1>
-	<hr></hr>
-	<ul class="mainNav">
-		<span>
-			<li><a href="${pageContext.request.contextPath}/index.jsp">Home</a></li>
-			<li><a href="${pageContext.request.contextPath}/bio.jsp">Bio</a></li>
-			<li><a id = "selected" href = "#">Resume</a></li>
-			<li><a href = "${pageContext.request.contextPath}/contact.jsp">Contact</a></li>
-		</span>
+<div class="container">
+	<h1 id="name">James William Beringer</h1>
+</div>
+<div class = "container mainNav">
+	<ul class="list-group">
+		<li class="list-group-item"><a href="${pageContext.request.contextPath}/index.jsp">Home</a></li>
+		<li class="list-group-item"><a href="${pageContext.request.contextPath}/bio.jsp">Bio</a></li>
+		<li class="list-group-item disabled"><a href="#">Resume</a></li>
+		<li class="list-group-item"><a href="${pageContext.request.contextPath}/contact.jsp">Contact</a></li>
 	</ul>
 </div>
 </body>

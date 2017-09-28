@@ -2,6 +2,7 @@ package com.coreApplication.java.logger;
 
 import java.util.logging.Logger;
 import java.util.logging.FileHandler;
+import java.util.logging.Level;
 import java.util.logging.SimpleFormatter;
 
 import java.util.Calendar;
@@ -15,7 +16,7 @@ import java.io.*;
 
 public class DefaultLogger {
 	//TODO: CHANGE BASED ON MACHINE USE, MAY ADD TO PROPERTIES FILE
-	static String defaultLocation = "G:\\MainApp\\coreApplication\\AppLogs\\default.log";
+	static String defaultLocation = "C:\\MainApp\\coreApplication\\AppLogs\\default.log";
 	
 	public static void logMsg (String message, String level) {
 		if (level == "INFO" || level == "INF") {
@@ -32,18 +33,17 @@ public class DefaultLogger {
 	public static void writeMsg (String message, String lvl) {
 		Logger logger = Logger.getLogger("com.coreApplication.java.logger");
 		FileHandler fh = null;
-		
 		try {
 			fh = new FileHandler(defaultLocation, true);
 			logger.addHandler(fh);
 			SimpleFormatter formatter = new SimpleFormatter();
 			fh.setFormatter(formatter);
 			if (lvl == "ERR") {
-				logger.severe(message);
+				logger.log(Level.SEVERE, message + "\n");
 			} else if (lvl == "WAR") {
-				logger.warning(message);
+				logger.log(Level.WARNING, message + "\n");
 			} else if (lvl == "INF") {
-				logger.info(message);
+				logger.log(Level.INFO, message + "\n");
 			}
 		} catch (SecurityException e) {
 			e.printStackTrace();
@@ -62,7 +62,8 @@ public class DefaultLogger {
 	}
 	
 	public static void main(String[] args) {
-		
+		logMsg("This is an info level message", "INFO");
+		logMsg("This is another info level message", "INFO");
 	}
 
 }

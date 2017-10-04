@@ -13,7 +13,7 @@ public class EmailAudit {
 	public static void writeRecord(String name, String emailAddress, String message, String phone) {
 		DefaultLogger.logMsg("New EmailAudit record being created...", "INF");
 		String connStr = GetSQLConnection.getConnectionString();
-		String query = "INSERT INTO EmailAudit (strName, strEmailAddress, strMessage, strPhone) VALUES ( " + name + "','" + emailAddress + "','" + message + "','" + phone + "')";
+		String query = "INSERT INTO EmailAudit (strName, strEmailAddress, strMessage, strPhone) VALUES ( '" + name + "','" + emailAddress + "','" + message + "','" + phone + "')";
 		//Building connection
 		try {
 			DriverManager.registerDriver(new com.microsoft.sqlserver.jdbc.SQLServerDriver());
@@ -27,10 +27,10 @@ public class EmailAudit {
 		} catch (Exception e) {
 			DefaultLogger.logMsg("Exception writing new record!", "ERR");
 			e.printStackTrace();
-		} 
+		}
+		DefaultLogger.logMsg("Write record end...", "INF");
 	}
 	
 	public static void main(String[] args) {
 	}
-
 }

@@ -10,6 +10,7 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import com.coreApplication.java.SQL.EmailAudit;
 import com.coreApplication.java.logger.DefaultLogger;
 
 public class JavaEmail {
@@ -29,26 +30,31 @@ public class JavaEmail {
 		emailProperties.put("mail.smtp.port", emailPort);
 		emailProperties.put("mail.smtp.auth", "true");
 		emailProperties.put("mail.smtp.starttls.enable", "true");
-		DefaultLogger.logMsg("Setting main server properties", "INFO");
+		DefaultLogger.logMsg("Setting main server properties...", "INFO");
 	}
 
-	public void createEmailMessage(String emailSubject, String emailBody) {
+	public void createEmailMessage(String name, String email, String phone, String message) {
+		String emailSubject = "New message from your site!";
+		String emailBody = "Name: " + name + "<br>";
+		emailBody += "Email: " + email + "<br>";
+		emailBody += "Phone: " + phone + "<br>";
+		emailBody += "Message: " + message;
+		DefaultLogger.logMsg("Logging email audit...", "INF");
+		EmailAudit.writeRecord(name, email, message, phone);
+		
 		try {
-		mailSession = Session.getDefaultInstance(emailProperties, null);
-		emailMessage = new MimeMessage(mailSession);
-		for (int i = 0; i < toEmails.length; i++) {
-			emailMessage.addRecipient(Message.RecipientType.TO,
-					new InternetAddress(toEmails[i]));
-		}
-		emailMessage.setSubject(emailSubject);
-		emailMessage.setContent(emailBody, "text/html");// for a html email
-		// emailMessage.setText(emailBody);// for a text email
+			mailSession = Session.getDefaultInstance(emailProperties, null);
+			emailMessage = new MimeMessage(mailSession);
+			for (int i = 0; i < toEmails.length; i++) {
+				emailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(toEmails[i]));
+			}
+			emailMessage.setSubject(emailSubject);
+			emailMessage.setContent(emailBody, "text/html");// for a html email
+			// emailMessage.setText(emailBody);// for a text email
 		} catch (AddressException e) { 
 			DefaultLogger.logMsg("JavaEmail.sendEmail() - AddressException: " + e.getMessage(), "ERROR");
 		} catch (MessagingException e) {
 			DefaultLogger.logMsg("JavaEmail.sendEmail() - MessagingException: " + e.getMessage(), "ERROR");
-		} finally {
-			DefaultLogger.logMsg("Email message created", "INFO");
 		}
 	}
 

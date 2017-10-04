@@ -7,22 +7,29 @@
 	if (request.getParameter("submit") != null) {
 		JavaEmail javaEmail = new JavaEmail();
 		javaEmail.setMailServerProperties();
-		String emailSubject = "You've been contacted!";
-		String emailBody = "";
+		String name = "";
+		String email = "";
+		String phone = "";
+		String emailMessage = "";
 		if (request.getParameter("name") != null) {
-			emailBody = "Sender Name: " + request.getParameter("name") + "<br>";
+			//emailBody = "Sender Name: " + request.getParameter("name") + "<br>";
+			name = request.getParameter("name");
 		}
 		if (request.getParameter("email") != null) {
-			emailBody = emailBody + "Sender Email: " + request.getParameter("email") + "<br>";
+			//emailBody = emailBody + "Sender Email: " + request.getParameter("email") + "<br>";
+			email = request.getParameter("email");
 		}
 		if (request.getParameter("phone") != null) {
-			emailBody = emailBody + "Sender Phone: " + request.getParameter("phone") + "<br>";
+			//emailBody = emailBody + "Sender Phone: " + request.getParameter("phone") + "<br>";
+			phone = request.getParameter("phone");
 		}
 		if (request.getParameter("message") != null) {
-			emailBody = emailBody + "Message: " + request.getParameter("message") + "<br>";
+			//emailBody = emailBody + "Message: " + request.getParameter("message") + "<br>";
+			emailMessage = request.getParameter("message");
 		}
 		
-		javaEmail.createEmailMessage(emailSubject, emailBody);
+		javaEmail.createEmailMessage(name, email, phone, emailMessage);
+		
 		try {
 			javaEmail.sendEmail();
 			status = "success";

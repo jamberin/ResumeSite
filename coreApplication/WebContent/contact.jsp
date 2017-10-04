@@ -1,27 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ page import="com.coreApplication.java.email.JavaEmail"%>
+<%@ page import="com.coreApplication.java.SQL.EmailAudit" %>
+<%@ page import="com.coreApplication.java.logger.DefaultLogger" %>
 <%@ page import="javax.mail.MessagingException"%>    
+<%@ page import="java.sql.SQLException" %>
 <%
 	String message = null;
 	String status = null;
 	if (request.getParameter("submit") != null) {
+		DefaultLogger.logMsg("Contact email sending...", "INF");
+		String auditEmail = "";
+		String auditMessage = "";
+		String auditPhone = "";
+		String auditName = "";
 		JavaEmail javaEmail = new JavaEmail();
 		javaEmail.setMailServerProperties();
-		String emailSubject = "Contact Form using Java JSP GMail";
+		String emailSubject = "You've been contacted!";
 		String emailBody = "";
 		if (request.getParameter("name") != null) {
-			emailBody = "Sender Name: " + request.getParameter("name") + "<br>";
+			auditName = request.getParameter("name");
+			emailBody = "Sender Name: " + auditName + "<br>";
 		}
 		if (request.getParameter("email") != null) {
-			emailBody = emailBody + "Sender Email: " + request.getParameter("email") + "<br>";
+			auditEmail = request.getParameter("email");
+			emailBody = emailBody + "Sender Email: " + auditEmail + "<br>";
 		}
 		if (request.getParameter("phone") != null) {
-			emailBody = emailBody + "Sender Phone: " + request.getParameter("phone") + "<br>";
+			auditPhone = request.getParameter("phone");
+			emailBody = emailBody + "Sender Phone: " + auditPhone + "<br>";
 		}
 		if (request.getParameter("message") != null) {
-			emailBody = emailBody + "Message: " + request.getParameter("message") + "<br>";
+			auditMessage = request.getParameter("message");
+			emailBody = emailBody + "Message: " + auditMessage + "<br>";
 		}
-		System.out.println("System sending email...");
+		
 		javaEmail.createEmailMessage(emailSubject, emailBody);
 		try {
 			javaEmail.sendEmail();

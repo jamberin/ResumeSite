@@ -61,8 +61,6 @@ public class JavaEmail {
 			transport.close();
 		} catch (AddressException e) {
 			DefaultLogger.logMsg("JavaEmail.sendEmail() - AddressException: " + e.getMessage(), "ERROR");
-		} finally {
-			DefaultLogger.logMsg("Completed send email", "INFO");
 		}
 	}
 }

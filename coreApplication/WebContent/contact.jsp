@@ -1,37 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ page import="com.coreApplication.java.email.JavaEmail"%>
-<%@ page import="com.coreApplication.java.SQL.EmailAudit" %>
-<%@ page import="com.coreApplication.java.logger.DefaultLogger" %>
-<%@ page import="javax.mail.MessagingException"%>    
-<%@ page import="java.sql.SQLException" %>
+<%@ page import="javax.mail.MessagingException"%>
 <%
 	String message = null;
 	String status = null;
 	if (request.getParameter("submit") != null) {
-		DefaultLogger.logMsg("Contact email sending...", "INF");
-		String auditEmail = "";
-		String auditMessage = "";
-		String auditPhone = "";
-		String auditName = "";
 		JavaEmail javaEmail = new JavaEmail();
 		javaEmail.setMailServerProperties();
 		String emailSubject = "You've been contacted!";
 		String emailBody = "";
 		if (request.getParameter("name") != null) {
-			auditName = request.getParameter("name");
-			emailBody = "Sender Name: " + auditName + "<br>";
+			emailBody = "Sender Name: " + request.getParameter("name") + "<br>";
 		}
 		if (request.getParameter("email") != null) {
-			auditEmail = request.getParameter("email");
-			emailBody = emailBody + "Sender Email: " + auditEmail + "<br>";
+			emailBody = emailBody + "Sender Email: " + request.getParameter("email") + "<br>";
 		}
 		if (request.getParameter("phone") != null) {
-			auditPhone = request.getParameter("phone");
-			emailBody = emailBody + "Sender Phone: " + auditPhone + "<br>";
+			emailBody = emailBody + "Sender Phone: " + request.getParameter("phone") + "<br>";
 		}
 		if (request.getParameter("message") != null) {
-			auditMessage = request.getParameter("message");
-			emailBody = emailBody + "Message: " + auditMessage + "<br>";
+			emailBody = emailBody + "Message: " + request.getParameter("message") + "<br>";
 		}
 		
 		javaEmail.createEmailMessage(emailSubject, emailBody);

@@ -14,7 +14,7 @@ import java.io.IOException;
 
 public class DefaultLogger {
 	//TODO: CHANGE BASED ON MACHINE USE, MAY ADD TO PROPERTIES FILE
-	static String defaultLocation = "C:\\MainApp\\coreApplication\\AppLogs\\default.log";
+	static String defaultLocation = "G:\\MainApp\\coreApplication\\AppLogs\\default.log";
 	
 	public static void logMsg (String message, String level) {
 		if (level == "INFO" || level == "INF") {

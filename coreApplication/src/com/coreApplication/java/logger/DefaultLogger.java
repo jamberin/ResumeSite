@@ -9,9 +9,7 @@ import java.util.Calendar;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.io.File;
 import java.io.IOException;
-import java.io.*;
 
 
 public class DefaultLogger {

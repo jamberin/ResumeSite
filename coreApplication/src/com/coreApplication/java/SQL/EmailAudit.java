@@ -31,6 +31,6 @@ public class EmailAudit {
 		DefaultLogger.logMsg("Write record end...", "INF");
 	}
 	
-	public static void main(String[] args) {
-	}
+	/*public static void main(String[] args) {
+	}*/
 }

@@ -5,16 +5,12 @@ import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.SimpleFormatter;
 
-import java.util.Calendar;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.io.IOException;
 
 
 public class DefaultLogger {
 	//TODO: CHANGE BASED ON MACHINE USE, MAY ADD TO PROPERTIES FILE
-	static String defaultLocation = "G:\\MainApp\\coreApplication\\AppLogs\\default.log";
+	static String defaultLocation = "C:\\MainApp\\coreApplication\\AppLogs\\default.log";
 	
 	public static void logMsg (String message, String level) {
 		if (level == "INFO" || level == "INF") {
@@ -28,7 +24,7 @@ public class DefaultLogger {
 		}
 	}
 	
-	public static void writeMsg (String message, String lvl) {
+	private static void writeMsg (String message, String lvl) {
 		Logger logger = Logger.getLogger("com.coreApplication.java.logger");
 		FileHandler fh = null;
 		try {
@@ -52,16 +48,7 @@ public class DefaultLogger {
 		}
 	}
 	
-	public static String getDateTime () {
-		Calendar cal = Calendar.getInstance();
-		DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		String dt = sdf.format(cal.getTime());
-		return dt;
-	}
-	
-	public static void main(String[] args) {
-		logMsg("This is an info level message", "INFO");
-		logMsg("This is another info level message", "INFO");
-	}
+	/*public static void main(String[] args) {
 
+	}*/
 }

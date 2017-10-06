@@ -23,7 +23,6 @@ public class JavaEmail {
 	String emailPort = "587";// gmail's smtp port
 	String fromUser = "beringer.tech@gmail.com";// your gmail id
 	String fromUserEmailPassword = "beringerj1";
-	String[] toEmails = { "jamberin@gmail.com" };
 
 	public void setMailServerProperties() {
 		emailProperties = System.getProperties();
@@ -33,29 +32,28 @@ public class JavaEmail {
 		DefaultLogger.logMsg("Setting main server properties...", "INFO");
 	}
 
-	public void createEmailMessage(String name, String email, String phone, String message) {
-		String emailSubject = "New message from your site!";
-		String emailBody = "Name: " + name + "<br>";
-		emailBody += "Email: " + email + "<br>";
-		emailBody += "Phone: " + phone + "<br>";
-		emailBody += "Message: " + message;
-		DefaultLogger.logMsg("Logging email audit...", "INF");
-		EmailAudit.writeRecord(name, email, message, phone);
-		
+	protected void createEmailMessage(String body, String subject, String[] toLine) {
 		try {
 			mailSession = Session.getDefaultInstance(emailProperties, null);
 			emailMessage = new MimeMessage(mailSession);
-			for (int i = 0; i < toEmails.length; i++) {
-				emailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(toEmails[i]));
+			for (int i = 0; i < toLine.length; i++) {
+				emailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(toLine[i]));
 			}
-			emailMessage.setSubject(emailSubject);
-			emailMessage.setContent(emailBody, "text/html");// for a html email
+			emailMessage.setSubject(subject);
+			emailMessage.setContent(body, "text/html");// for a html email
 			// emailMessage.setText(emailBody);// for a text email
 		} catch (AddressException e) { 
-			DefaultLogger.logMsg("JavaEmail.sendEmail() - AddressException: " + e.getMessage(), "ERROR");
+			DefaultLogger.logMsg("JavaEmail.createEmailMessage() - AddressException: " + e.getMessage(), "ERROR");
 		} catch (MessagingException e) {
-			DefaultLogger.logMsg("JavaEmail.sendEmail() - MessagingException: " + e.getMessage(), "ERROR");
+			DefaultLogger.logMsg("JavaEmail.createEmailMessage() - MessagingException: " + e.getMessage(), "ERROR");
 		}
+	}
+	
+	public void contactFormAction(String name, String email, String phone, String message, String emailBody) {
+		String subject = "New message from your site!";
+		String[] toLine = { "jamberin@gmail.com" };
+		EmailAudit.writeRecord(name,email,message,phone);
+		createEmailMessage(emailBody, subject, toLine);
 	}
 
 	public void sendEmail() throws MessagingException{

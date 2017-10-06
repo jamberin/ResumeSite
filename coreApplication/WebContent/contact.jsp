@@ -11,24 +11,25 @@
 		String email = "";
 		String phone = "";
 		String emailMessage = "";
+		String emailBody = "";
 		if (request.getParameter("name") != null) {
-			//emailBody = "Sender Name: " + request.getParameter("name") + "<br>";
+			emailBody = "Sender Name: " + request.getParameter("name") + "<br>";
 			name = request.getParameter("name");
 		}
 		if (request.getParameter("email") != null) {
-			//emailBody = emailBody + "Sender Email: " + request.getParameter("email") + "<br>";
+			emailBody = emailBody + "Sender Email: " + request.getParameter("email") + "<br>";
 			email = request.getParameter("email");
 		}
 		if (request.getParameter("phone") != null) {
-			//emailBody = emailBody + "Sender Phone: " + request.getParameter("phone") + "<br>";
+			emailBody = emailBody + "Sender Phone: " + request.getParameter("phone") + "<br>";
 			phone = request.getParameter("phone");
 		}
 		if (request.getParameter("message") != null) {
-			//emailBody = emailBody + "Message: " + request.getParameter("message") + "<br>";
+			emailBody = emailBody + "Message: " + request.getParameter("message") + "<br>";
 			emailMessage = request.getParameter("message");
 		}
 		
-		javaEmail.createEmailMessage(name, email, phone, emailMessage);
+		javaEmail.contactFormAction(name, email, phone, emailMessage, emailBody);
 		
 		try {
 			javaEmail.sendEmail();

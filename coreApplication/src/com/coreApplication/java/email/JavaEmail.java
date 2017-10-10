@@ -1,5 +1,9 @@
 package com.coreApplication.java.email;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -12,6 +16,7 @@ import javax.mail.internet.MimeMessage;
 
 import com.coreApplication.java.SQL.EmailAudit;
 import com.coreApplication.java.logger.DefaultLogger;
+import com.coreApplication.java.SQL.ContactController;
 
 public class JavaEmail {
 
@@ -50,10 +55,58 @@ public class JavaEmail {
 	}
 	
 	public void contactFormAction(String name, String email, String phone, String message, String emailBody) {
-		String subject = "New message from your site!";
-		String[] toLine = { "jamberin@gmail.com" };
-		EmailAudit.writeRecord(name,email,message,phone);
-		createEmailMessage(emailBody, subject, toLine);
+		Boolean chk = replyUtility(email);
+		if (chk == true) {
+			String subject = "Someone contacted you! FROM: " +  email;
+			String[] toLine = { "jamberin@gmail.com" };
+			EmailAudit.writeRecord(name,email,message,phone);
+			createEmailMessage(emailBody, subject, toLine);
+			replyUtility(email);
+		} else {
+			System.out.println("Contact permission denied...");
+		}
+	}
+	
+	private Boolean replyUtility(String email) {
+		Boolean chk = ContactController.permissionCheck(email);
+		String[] toLine = { email };
+		String body;
+		String subj;
+		if (chk == true) {
+			body = getEmailBody("EmailTemplates\\ContactConfirmation.html");
+			subj = "We've got your message!";
+		} else if (chk == false) {
+			body = getEmailBody("EmailTemplates\\ContactViolation.html");
+			subj = "Woah there! Looks like you're trying to contact too frequently...";
+		} else {
+			body = "An error has occurred trying to send the email! Please contact the system administrator by replying to this email!";
+			subj = "WHOOPS!";
+		}
+		setMailServerProperties();
+		createEmailMessage(body, subj, toLine);
+		try	{
+			sendEmail();
+		} catch (MessagingException e) {
+			e.printStackTrace();
+			DefaultLogger.logMsg("JavaEmail.repUtility() - MessagingException: " + e.getMessage(), "ERR");
+		}
+		return chk;
+	}
+	
+	private String getEmailBody(String filePath) {		
+		StringBuilder contentBuilder = new StringBuilder();
+		try {
+			BufferedReader in = new BufferedReader(new FileReader(filePath));
+			String str;
+			while ((str = in.readLine()) != null) {
+				contentBuilder.append(str);
+			}
+			in.close();
+		} catch (IOException e) {
+			DefaultLogger.logMsg("JavaEmail.getEmailBody() Error: " + e.getMessage(), "ERR");
+		}
+		String content = contentBuilder.toString();
+		return content;
 	}
 
 	public void sendEmail() throws MessagingException{

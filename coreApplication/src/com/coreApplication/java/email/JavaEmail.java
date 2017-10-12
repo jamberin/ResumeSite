@@ -4,7 +4,10 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Properties;
+import java.util.Scanner;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -13,6 +16,8 @@ import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+
+import org.apache.tomcat.util.http.fileupload.FileUtils;
 
 import com.coreApplication.java.SQL.EmailAudit;
 import com.coreApplication.java.logger.DefaultLogger;
@@ -59,11 +64,11 @@ public class JavaEmail {
 		if (chk == true) {
 			String subject = "Someone contacted you! FROM: " +  email;
 			String[] toLine = { "jamberin@gmail.com" };
-			EmailAudit.writeRecord(name,email,message,phone);
+			//EmailAudit.writeRecord(name,email,message,phone);
 			createEmailMessage(emailBody, subject, toLine);
 			replyUtility(email);
 		} else {
-			System.out.println("Contact permission denied...");
+			//TODO: CREATE LOGGER MESSAGE FOR DENIED EMAIL
 		}
 	}
 	
@@ -73,10 +78,10 @@ public class JavaEmail {
 		String body;
 		String subj;
 		if (chk == true) {
-			body = getEmailBody("EmailTemplates\\ContactConfirmation.html");
+			body = getEmailBody("G:/MainApp/coreApplication/src/EmailTemplates/ContactConfirmation.html");
 			subj = "We've got your message!";
 		} else if (chk == false) {
-			body = getEmailBody("EmailTemplates\\ContactViolation.html");
+			body = getEmailBody("G:/MainApp/coreApplication/src/EmailTemplates/src/EmailTemplates/ContactViolation.html");
 			subj = "Woah there! Looks like you're trying to contact too frequently...";
 		} else {
 			body = "An error has occurred trying to send the email! Please contact the system administrator by replying to this email!";
@@ -95,8 +100,11 @@ public class JavaEmail {
 	
 	private String getEmailBody(String filePath) {		
 		StringBuilder contentBuilder = new StringBuilder();
+		File file = new File(filePath);
+		
 		try {
-			BufferedReader in = new BufferedReader(new FileReader(filePath));
+			FileReader reader = new FileReader(file);
+			BufferedReader in = new BufferedReader(reader);
 			String str;
 			while ((str = in.readLine()) != null) {
 				contentBuilder.append(str);
@@ -111,7 +119,6 @@ public class JavaEmail {
 
 	public void sendEmail() throws MessagingException{
 		try {
-			DefaultLogger.logMsg("Starting send email", "INFO");
 			Transport transport = mailSession.getTransport("smtp");
 			transport.connect(emailHost, fromUser, fromUserEmailPassword);
 			transport.sendMessage(emailMessage, emailMessage.getAllRecipients());
@@ -119,5 +126,9 @@ public class JavaEmail {
 		} catch (AddressException e) {
 			DefaultLogger.logMsg("JavaEmail.sendEmail() - AddressException: " + e.getMessage(), "ERROR");
 		}
+	}
+	
+	public static void main(String[] args) {
+	
 	}
 }

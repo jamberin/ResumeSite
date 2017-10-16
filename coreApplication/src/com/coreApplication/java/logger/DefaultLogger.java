@@ -1,16 +1,19 @@
 package com.coreApplication.java.logger;
 
 import java.util.logging.Logger;
+
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.SimpleFormatter;
 
 import java.io.IOException;
 
+import com.coreApplication.java.Props.GetProperties;
+
 
 public class DefaultLogger {
 	//TODO: CHANGE BASED ON MACHINE USE, MAY ADD TO PROPERTIES FILE
-	static String defaultLocation = "C:\\MainApp\\coreApplication\\AppLogs\\default.log";
+	static String defaultLocation = GetProperties.getDefaultLoggerPath();
 	
 	public static void logMsg (String message, String level) {
 		if (level == "INFO" || level == "INF") {
@@ -24,7 +27,7 @@ public class DefaultLogger {
 		}
 	}
 	
-	private static void writeMsg (String message, String lvl) {
+	public static void writeMsg (String message, String lvl) {
 		Logger logger = Logger.getLogger("com.coreApplication.java.logger");
 		FileHandler fh = null;
 		try {
@@ -48,7 +51,7 @@ public class DefaultLogger {
 		}
 	}
 	
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
 
-	}*/
+	}
 }

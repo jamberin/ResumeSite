@@ -5,9 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.Properties;
-import java.util.Scanner;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -17,9 +15,7 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import org.apache.tomcat.util.http.fileupload.FileUtils;
-
-import com.coreApplication.java.SQL.EmailAudit;
+import com.coreApplication.java.Props.GetProperties;
 import com.coreApplication.java.logger.DefaultLogger;
 import com.coreApplication.java.SQL.ContactController;
 
@@ -30,8 +26,8 @@ public class JavaEmail {
 	MimeMessage emailMessage;
 
 	String emailHost = "smtp.gmail.com";
-	String emailPort = "587";// gmail's smtp port
-	String fromUser = "beringer.tech@gmail.com";// your gmail id
+	String emailPort = "587";// gmail's SMTP port
+	String fromUser = "beringer.tech@gmail.com";// your GMAIL id
 	String fromUserEmailPassword = "beringerj1";
 
 	public void setMailServerProperties() {
@@ -50,7 +46,7 @@ public class JavaEmail {
 				emailMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(toLine[i]));
 			}
 			emailMessage.setSubject(subject);
-			emailMessage.setContent(body, "text/html");// for a html email
+			emailMessage.setContent(body, "text/html");// for a HTML email
 			// emailMessage.setText(emailBody);// for a text email
 		} catch (AddressException e) { 
 			DefaultLogger.logMsg("JavaEmail.createEmailMessage() - AddressException: " + e.getMessage(), "ERROR");
@@ -78,10 +74,10 @@ public class JavaEmail {
 		String body;
 		String subj;
 		if (chk == true) {
-			body = getEmailBody("G:/MainApp/coreApplication/src/EmailTemplates/ContactConfirmation.html");
+			body = getEmailBody(GetProperties.getEmailTemplatePath("ContactConfirmation"));
 			subj = "We've got your message!";
 		} else if (chk == false) {
-			body = getEmailBody("G:/MainApp/coreApplication/src/EmailTemplates/src/EmailTemplates/ContactViolation.html");
+			body = getEmailBody(GetProperties.getEmailTemplatePath("ContactViolation"));
 			subj = "Woah there! Looks like you're trying to contact too frequently...";
 		} else {
 			body = "An error has occurred trying to send the email! Please contact the system administrator by replying to this email!";
@@ -126,9 +122,5 @@ public class JavaEmail {
 		} catch (AddressException e) {
 			DefaultLogger.logMsg("JavaEmail.sendEmail() - AddressException: " + e.getMessage(), "ERROR");
 		}
-	}
-	
-	public static void main(String[] args) {
-	
 	}
 }

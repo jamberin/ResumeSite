@@ -28,19 +28,21 @@ public class DefaultLogger {
 	}
 	
 	public static void writeMsg (String message, String lvl) {
+		System.setProperty("java.util.logging.SimpleFormatter.format", "[%1$tF %1$tT] [%4$-7s] %5$s %n");
 		Logger logger = Logger.getLogger("com.coreApplication.java.logger");
 		FileHandler fh = null;
 		try {
 			fh = new FileHandler(defaultLocation, true);
 			logger.addHandler(fh);
 			SimpleFormatter formatter = new SimpleFormatter();
+			
 			fh.setFormatter(formatter);
 			if (lvl == "ERR") {
-				logger.log(Level.SEVERE, message + "\n");
+				logger.log(Level.SEVERE, message);
 			} else if (lvl == "WAR") {
-				logger.log(Level.WARNING, message + "\n");
+				logger.log(Level.WARNING, message);
 			} else if (lvl == "INF") {
-				logger.log(Level.INFO, message + "\n");
+				logger.log(Level.INFO, message);
 			}
 		} catch (SecurityException e) {
 			e.printStackTrace();
@@ -52,6 +54,5 @@ public class DefaultLogger {
 	}
 	
 	public static void main(String[] args) {
-
 	}
 }

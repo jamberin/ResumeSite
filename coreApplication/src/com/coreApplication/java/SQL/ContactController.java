@@ -22,9 +22,9 @@ public class ContactController {
 			rs = sta.executeQuery(query);
 		} catch (SQLException e) {
 			e.printStackTrace();
-			DefaultLogger.logMsg("Error at checkCount [ContactController.java]: " + e.getMessage(), "ERR");
+			DefaultLogger.logMsg("[ContactController.java] Error at checkCount: " + e.getMessage(), "ERR");
 			rs = null;
-			DefaultLogger.logMsg("Setting the result set to null!", "WAR");
+			DefaultLogger.logMsg("[ContactController.java] Setting the result set to null!", "WAR");
 		}
 		return rs;
 	}
@@ -39,7 +39,7 @@ public class ContactController {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			DefaultLogger.logMsg("ContactController.lastDay() Error! " + e.getMessage(), "ERR");
+			DefaultLogger.logMsg("[ContactController.java] Error at lastDay: " + e.getMessage(), "ERR");
 		}
 		return count;
 	}
@@ -54,7 +54,7 @@ public class ContactController {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			DefaultLogger.logMsg("ContactController.lastDay() Error! " + e.getMessage(), "ERR");
+			DefaultLogger.logMsg("[ContactController.java] Error at lastWeek: " + e.getMessage(), "ERR");
 		}
 		return count;
 	}
@@ -69,7 +69,7 @@ public class ContactController {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			DefaultLogger.logMsg("ContactController.lastMnth() Error! " + e.getMessage(), "ERR");
+			DefaultLogger.logMsg("[ContactController.java] Error at lastMnth: " + e.getMessage(), "ERR");
 		}
 		return count;
 	}
@@ -81,10 +81,10 @@ public class ContactController {
 		int day = lastDay(email);
 		if (month > 30 || week > 15 || day > 5) {
 			chk = false;
-			DefaultLogger.logMsg("User contact frequency violation!", "WAR");
+			DefaultLogger.logMsg("[ContactController.java] User contact frequency violation!", "WAR");
 		} else {
 			chk = true;
-			DefaultLogger.logMsg("User permission pass...", "INF");
+			DefaultLogger.logMsg("[ContactController.java] User permission pass...", "INF");
 		}
 		return chk;
 	}

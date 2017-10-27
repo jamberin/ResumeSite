@@ -9,7 +9,7 @@ public class GetSQLConnection {
 
 	public static String getConnectionString () {
 		//Default connection that pulls from the config.properties file
-		DefaultLogger.logMsg("Building default connection string...", "INF");
+		DefaultLogger.logMsg("[GetSQLConnection.java] Building default connection string...", "INF");
 		String connStr = "";
 		Properties props = new Properties();
 		try {
@@ -23,7 +23,7 @@ public class GetSQLConnection {
 		} catch (IOException e) {
 			e.printStackTrace();
 			connStr = "ERROR PULLING CONNECTION STRING";
-			DefaultLogger.logMsg("Error building connection string", "ERR");
+			DefaultLogger.logMsg("[GetSQLConnection.java] getConnectionString Error | IOException: " + e.getMessage(), "ERR");
 			return connStr;
 		}
 		DefaultLogger.logMsg("Connection string built: " + connStr, "INF");

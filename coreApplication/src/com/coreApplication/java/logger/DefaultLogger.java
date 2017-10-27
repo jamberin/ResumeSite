@@ -12,7 +12,6 @@ import com.coreApplication.java.Props.GetProperties;
 
 
 public class DefaultLogger {
-	//TODO: CHANGE BASED ON MACHINE USE, MAY ADD TO PROPERTIES FILE
 	static String defaultLocation = GetProperties.getDefaultLoggerPath();
 	
 	public static void logMsg (String message, String level) {

@@ -49,9 +49,9 @@ public class JavaEmail {
 			emailMessage.setContent(body, "text/html");// for a HTML email
 			// emailMessage.setText(emailBody);// for a text email
 		} catch (AddressException e) { 
-			DefaultLogger.logMsg("JavaEmail.createEmailMessage() - AddressException: " + e.getMessage(), "ERROR");
+			DefaultLogger.logMsg("[JavaEmail.java] Error at createEmailMessage | AddressException: " + e.getMessage(), "ERROR");
 		} catch (MessagingException e) {
-			DefaultLogger.logMsg("JavaEmail.createEmailMessage() - MessagingException: " + e.getMessage(), "ERROR");
+			DefaultLogger.logMsg("[JavaEmail.java] Error at createEmailMessage | MessagingException: " + e.getMessage(), "ERROR");
 		}
 	}
 	
@@ -89,7 +89,7 @@ public class JavaEmail {
 			sendEmail();
 		} catch (MessagingException e) {
 			e.printStackTrace();
-			DefaultLogger.logMsg("JavaEmail.repUtility() - MessagingException: " + e.getMessage(), "ERR");
+			DefaultLogger.logMsg("[JavaEmail.java] Error at replyUtility | MessagingException: " + e.getMessage(), "ERR");
 		}
 		return chk;
 	}
@@ -107,7 +107,7 @@ public class JavaEmail {
 			}
 			in.close();
 		} catch (IOException e) {
-			DefaultLogger.logMsg("JavaEmail.getEmailBody() Error: " + e.getMessage(), "ERR");
+			DefaultLogger.logMsg("[JavaEmail.java] Error at getEmailBody: " + e.getMessage(), "ERR");
 		}
 		String content = contentBuilder.toString();
 		return content;
@@ -120,7 +120,7 @@ public class JavaEmail {
 			transport.sendMessage(emailMessage, emailMessage.getAllRecipients());
 			transport.close();
 		} catch (AddressException e) {
-			DefaultLogger.logMsg("JavaEmail.sendEmail() - AddressException: " + e.getMessage(), "ERROR");
+			DefaultLogger.logMsg("[JavaEmail.java] Error at sendEmail | AddressException: " + e.getMessage(), "ERROR");
 		}
 	}
 }

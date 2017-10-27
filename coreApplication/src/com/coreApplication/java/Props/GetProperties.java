@@ -12,7 +12,7 @@ public class GetProperties {
 		try {
 			props.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("config.properties"));
 		} catch (IOException e) {
-			DefaultLogger.logMsg("GetProperties.getDefaultProperties() ERROR: " + e.getMessage(), "ERR");
+			DefaultLogger.logMsg("[GetProperties.java] getDefaultProperties Error | IOException: " + e.getMessage(), "ERR");
 			e.printStackTrace();
 		}
 		return props;

@@ -11,7 +11,7 @@ import java.sql.Statement;
 public class EmailAudit {
 
 	public static void writeRecord(String name, String emailAddress, String message, String phone) {
-		DefaultLogger.logMsg("New EmailAudit record being created...", "INF");
+		DefaultLogger.logMsg("[EmailAudit.java] writeRecord | New EmailAudit record being created...", "INF");
 		String connStr = GetSQLConnection.getConnectionString();
 		String query = "INSERT INTO EmailAudit (strName, strEmailAddress, strMessage, strPhone) VALUES ( '" + name + "','" + emailAddress + "','" + message + "','" + phone + "')";
 		//Building connection
@@ -22,13 +22,13 @@ public class EmailAudit {
 			DefaultLogger.logMsg("Starting insert statement...", "INF");
 			sta.executeUpdate(query);
 		} catch (SQLException e) {
-			DefaultLogger.logMsg("SQL Exception writing new record!", "ERR");
+			DefaultLogger.logMsg("[EmailAudit.java] writeRecord | SQL Exception writing new record: " + e.getMessage(), "ERR");
 			e.printStackTrace();
 		} catch (Exception e) {
-			DefaultLogger.logMsg("Exception writing new record!", "ERR");
+			DefaultLogger.logMsg("[EmailAudit.java] writeRecord | Exception writing new record: " + e.getMessage(), "ERR");
 			e.printStackTrace();
 		}
-		DefaultLogger.logMsg("Write record end...", "INF");
+		DefaultLogger.logMsg("[EmailAudit.java] writeRecord | Write record end...", "INF");
 	}
 	
 	/*public static void main(String[] args) {

@@ -2,11 +2,10 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
+
 <link rel="stylesheet" href="${pageContext.request.contextPath}/styleSheets/main.css"  type="text/css" media="all"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/styleSheets/bootstrap.css"  type="text/css" media="all"/>
 
-<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
-<script src="${pageContext.request.contextPath}/Resources/js/bootstrap.min.js"></script>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -24,9 +23,16 @@
 		<li class="list-group-item"><a href="${pageContext.request.contextPath}/contact.jsp">Contact</a></li>
 	</ul>
 </div>
+<div class = "container content">
+	<p>
+	<a href="${pageContext.request.contextPath}/Resources/Resume041317.pdf">Official Printable Resume</a>
+	</p>
+</div>
 <!-- <iframe id="resume" src="https://docs.google.com/viewer?srcid=0B7lPGxCWn96Dbk1DaEZORFBpb28&pid=explorer&efh=false&a=v&chrome=false&embedded=true" width="580px" height="480px"></iframe> -->
+<!-- 
 <center>
 	<embed id="resume" src="${pageContext.request.contextPath}/Resources/Resume041317.pdf" type="application/pdf"/>
 </center>
+ -->
 </body>
 </html>

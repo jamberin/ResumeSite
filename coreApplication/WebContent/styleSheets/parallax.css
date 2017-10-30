@@ -23,6 +23,12 @@ html, body {
   margin: 0;
   padding: 0;
 }
+.shade {
+	background:rgba(255,255,255,0.75);
+	color: #408080;
+	padding: 10px;
+	line-height: 1.25em;
+}
 /* additional sections */
 #home {
   background: url(../Resources/landscape.jpg) no-repeat center center fixed;
@@ -37,11 +43,12 @@ html, body {
 }
 #about {
 }
-#services {
-  background-color: #306d9f;
+#resume {
+  background: url(../Resources/city.jpg) no-repeat center center fixed;
+  height: 800px;
   color: #ffffff;
 }
-#services .glyphicon {
+#resume .glyphicon {
   border: 2px solid #FFFFFF;
   border-radius: 50%;
   display: inline-block;
@@ -52,8 +59,8 @@ html, body {
   vertical-align: middle;
   width: 140px;
 }
-#information {
-  background: url(../images/estate.jpg) no-repeat center center fixed;
+#bio {
+  background: url(../Resources/frontier.jpg) no-repeat center center fixed;
   display: table;
   height: 800px;
   position: relative;
@@ -68,6 +75,10 @@ html, body {
 }
 #google_map {
   height: 500px;
+}
+#contact {
+	background: url(../Resources/servers.jpg) no-repeat center center fixed;
+	height: 800px;
 }
 footer {
   padding: 20px 0;

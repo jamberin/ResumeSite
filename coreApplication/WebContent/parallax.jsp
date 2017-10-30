@@ -52,6 +52,7 @@
 	
 	<link href="${pageContext.request.contextPath}/styleSheets/bootstrap.css" rel="stylesheet" />
 	<link href="${pageContext.request.contextPath}/styleSheets/parallax.css" rel="stylesheet" />
+	<link href="${pageContext.request.contextPath}/styleSheets/main.css" rel="stylesheet" />
 	<link href="${pageContext.request.contextPath}/styleSheets/contactForm.css" rel="stylesheet" />
 	
 	<script src="${pageContext.request.contextPath}/Resources/js/external/jquery/jquery.js"></script>
@@ -61,13 +62,6 @@
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 	<div class="container-fluid">
 		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-main">
-				<span class="sr-only">Toggle Navigation</span>
-				<span class="icon-bar">Home</span>
-				<span class="icon-bar">Bio</span>
-				<span class="icon-bar">Resume</span>
-				<span class="icon-bar">Resume</span>
-			</button>
 			<a class="navbar-brand" href="#">James William Beringer</a>
 		</div>
 		<div class="collapse navbar-collapse" id="navbar-collapse-main">
@@ -91,7 +85,8 @@
 	<div class="container">
 			<div class="row">
 				<div class="col-sm-6">
-					<img src="images/logo.png" alt="" />
+					<img src="${pageContext.request.contextPath}/Resources/logo.png" alt="" style="height:150px; width:150px;" />
+					James William Beringer
 				</div>
 			<div class="col-sm-6 text-center">
 				<h2>Bio</h2>
@@ -104,7 +99,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-6">
-				<div class="panel panel-default">
+				<div class="panel panel-default shade">
 					<div class="panel-heading">
 						<h2 class="panel-title">Additional information</h2>
 					</div>
@@ -114,7 +109,7 @@
 				</div>
 			</div>
 			<div class="col-sm-6">
-				<div class="panel panel-default">
+				<div class="panel panel-default shade">
 					<div class="panel-heading">
 						<h2 class="panel-title">Additional information</h2>
 					</div>

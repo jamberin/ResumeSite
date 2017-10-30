@@ -1,6 +1,5 @@
 @CHARSET "ISO-8859-1";
 body {
-	background: url("../Resources/landscape.jpg") no-repeat center center fixed;
 	background-size: cover;
 	color: white;
 	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;

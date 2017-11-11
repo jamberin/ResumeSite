@@ -58,19 +58,19 @@
 	<script src="${pageContext.request.contextPath}/Resources/js/slide.js"></script>
 </head>
 <body>
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+<div class="navbar navbar-fixed-top">
 	<div class="container-fluid">
-		<div class="navbar-header">
+		<div>
 			<a class="navbar-brand" href="#">James William Beringer</a>
 		</div>
-		<ul class="nav navbar-nav">
+		<ul class="navbar-nav">
 			<li><a href="#home" class="btn">Home</a></li>
 			<li><a href="#bio" class="btn">Bio</a></li>
 			<li><a href="#resume" class="btn">Resume</a></li>
 			<li><a href="#contact" class="btn">Contact</a></li>
 		</ul>
 	</div>	
-</nav>
+</div>
 <div id="home" class="home">
 	<div class="text-vcenter">
 		<h1>Welcome!</h1>

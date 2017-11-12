@@ -69,6 +69,15 @@
 			<li><a href="#resume" class="btn">Resume</a></li>
 			<li><a href="#contact" class="btn">Contact</a></li>
 		</ul>
+		<div class="dropdown" style="display:none;">
+			<button class="dropbtn">Select Page</button>
+			<div class="dropdown-content">
+				<a href="#home" class="btn">Home</a>
+				<a href="#bio" class="btn">Bio</a>
+				<a href="#resume" class="btn">Resume</a>
+				<a href="#contact" class="btn">Contact</a>
+			</div>
+		</div>
 	</div>	
 </div>
 <div id="home" class="home">
@@ -78,8 +87,8 @@
 		<a href="#bio" class="btn btn-default btn-lg">Bio</a>
 	</div>
 </div>
-<div id="bio" class="pad-section">
-	<div>
+<div id="bio">
+	<div class="pageHead">
 		<h2>Bio</h2>
 		<h6>A little about me and my work...</h6>
 	</div>
@@ -107,112 +116,93 @@
 		</p>
 	</div>
 	<div class="slideshow-container">
-		<div class="mySlides fade">
+		<div class="mySlides" style="display:block;">
 			<div class="numbertext">1 / 17</div>
 			<img src="${pageContext.request.contextPath}/Resources/Cat/1.jpg">
 			<div class="text">This is Pearl!</div>
 		</div>
-		<div class="mySlides fade">
+		<div class="mySlides">
 			<div class="numbertext">2 / 17</div>
 			<img src="${pageContext.request.contextPath}/Resources/Cat/2.jpg">
 			<div class="text">She's a ferocious killing machine</div>
 		</div>
-		<div class="mySlides fade">
+		<div class="mySlides">
 			<div class="numbertext">3 / 17</div>
 			<img src="${pageContext.request.contextPath}/Resources/Cat/3.jpg">
 			<div class="text">Sometimes she goes on adventures.  Here she is with Simone.</div>
 		</div>
-		<div class="mySlides fade">
+		<div class="mySlides">
 			<div class="numbertext">4 / 17</div>
 			<img src="${pageContext.request.contextPath}/Resources/Cat/4.jpg">
 			<div class="text">"What mistakes have lead me to here?!" -Pearl</div>
 		</div>
-		<div class="mySlides fade">
+		<div class="mySlides">
 			<div class="numbertext">5 / 17</div>
 			<img src="${pageContext.request.contextPath}/Resources/Cat/5.jpg">
 			<div class="text">Mostly, she likes to sleep.</div>
 		</div>
-		<div class="mySlides fade">
+		<div class="mySlides">
 			<div class="numbertext">6 / 17</div>
 			<img src="${pageContext.request.contextPath}/Resources/Cat/6.jpg">
 			<div class="text">Particularly at anyone else's inconvenience.</div>
 		</div>
-		<div class="mySlides fade">
+		<div class="mySlides">
 			<div class="numbertext">7 / 17</div>
 			<img src="${pageContext.request.contextPath}/Resources/Cat/7.jpg">
 			<div class="text">Which is almost always my inconvenience.</div>
 		</div>
-		<div class="mySlides fade">
+		<div class="mySlides">
 			<div class="numbertext">8 / 17</div>
 			<img src="${pageContext.request.contextPath}/Resources/Cat/8.jpg">
 			<div class="text">It may be her favorite spot.</div>
 		</div>
-		<div class="mySlides fade">
+		<div class="mySlides">
 			<div class="numbertext">9 / 17</div>
 			<img src="${pageContext.request.contextPath}/Resources/Cat/9.jpg">
 			<div class="text">I'm okay with that though</div>
 		</div>
-		<div class="mySlides fade">
+		<div class="mySlides">
 			<div class="numbertext">10 / 17</div>
 			<img src="${pageContext.request.contextPath}/Resources/Cat/10.jpg">
 			<div class="text">Really though, she'll sleep anywhere.</div>
 		</div>
-		<div class="mySlides fade">
+		<div class="mySlides">
 			<div class="numbertext">11 / 17</div>
 			<img src="${pageContext.request.contextPath}/Resources/Cat/11.jpg">
 			<div class="text">The purple blanket is her favorite...</div>
 		</div>
-		<div class="mySlides fade">
+		<div class="mySlides">
 			<div class="numbertext">12 / 17</div>
 			<img src="${pageContext.request.contextPath}/Resources/Cat/12.jpg">
 			<div class="text">...along with bags.</div>
 		</div>
-		<div class="mySlides fade">
+		<div class="mySlides">
 			<div class="numbertext">13 / 17</div>
 			<img src="${pageContext.request.contextPath}/Resources/Cat/13.jpg">
 			<div class="text">Anywhere she can sleep, she'll find.</div>
 		</div>
-		<div class="mySlides fade">
+		<div class="mySlides">
 			<div class="numbertext">14 / 17</div>
 			<img src="${pageContext.request.contextPath}/Resources/Cat/14.jpg">
 			<div class="text">As long as you don't wake her up!</div>
 		</div>
-		<div class="mySlides fade">
+		<div class="mySlides">
 			<div class="numbertext">15 / 17</div>
 			<img src="${pageContext.request.contextPath}/Resources/Cat/15.jpg">
 			<div class="text">Here she is plotting to kill me from across the room.</div>
 		</div>
-		<div class="mySlides fade">
+		<div class="mySlides">
 			<div class="numbertext">16 / 17</div>
 			<img src="${pageContext.request.contextPath}/Resources/Cat/16.jpg">
 			<div class="text">I don't think she will though.</div>
 		</div>
-		<div class="mySlides fade">
+		<div class="mySlides">
 			<div class="numbertext">17 / 17</div>
 			<img src="${pageContext.request.contextPath}/Resources/Cat/17.jpg">
 			<div class="text">Regal as ever!</div>
 		</div>
 	<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
 	<a class="next" onclick="plusSlides(1)">&#10095;</a>
-	</div>
-	<div style="text-align:center">
-		<span class="dot active" onclick="currentSlide(1)"></span>
-		<span class="dot" onclick="currentSlide(2)"></span>
-		<span class="dot" onclick="currentSlide(3)"></span>
-		<span class="dot" onclick="currentSlide(4)"></span>
-		<span class="dot" onclick="currentSlide(5)"></span>
-		<span class="dot" onclick="currentSlide(6)"></span>
-		<span class="dot" onclick="currentSlide(7)"></span>
-		<span class="dot" onclick="currentSlide(8)"></span>
-		<span class="dot" onclick="currentSlide(9)"></span>
-		<span class="dot" onclick="currentSlide(10)"></span>
-		<span class="dot" onclick="currentSlide(11)"></span>
-		<span class="dot" onclick="currentSlide(12)"></span>
-		<span class="dot" onclick="currentSlide(13)"></span>
-		<span class="dot" onclick="currentSlide(14)"></span>
-		<span class="dot" onclick="currentSlide(15)"></span>
-		<span class="dot" onclick="currentSlide(16)"></span>
-		<span class="dot" onclick="currentSlide(17)"></span>
 	</div>
 </div>
 <div id="resume" class="pad-section">
@@ -221,25 +211,52 @@
 			<div class="col-sm-6">
 				<div class="panel panel-default shade">
 					<div class="panel-heading">
-						<h2 class="panel-title">Additional information</h2>
+						<h2 class="panel-title">Technical Proficiencies</h2>
 					</div>
 					<div class="panel-body lead">
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed hendrerit adipiscing blandit. Aliquam placerat, velit a fermentum fermentum, mi felis vehicula justo, a dapibus quam augue non massa. Duis euismod, augue et tempus consequat, lorem mauris porttitor quam, consequat ultricies mauris mi a metus. Phasellus congue, leo sed ultricies tristique, nunc libero tempor ligula, at varius mi nibh in nisi. Aliquam erat volutpat. Maecenas rhoncus, neque facilisis rhoncus tempus, elit ligula varius dui, quis amet.
+					I've been focusing on honing in my usable skills in a range of different areas.  Some are below, but for a full list, please check my official resume:
+					<ul>
+						<li>Java Web Application Troubleshooting</li>
+						<li>Basic Linux Server Configuration</li>
+						<li>eCommerce Application Testing</li>
+						<li>SSH Protocol</li>
+						<li>.NET Application Development</li>
+						<li>Java Application Development</li>
+						<li>Basic SAP Hybris Management</li>
+						<li>Ruby Automation Testing</li>
+						<li>PowerShell Script Writing</li>
+						<li>VB.NET Excel Macro Writing</li>
+						<li>Git Version Control</li>
+					</ul> 
 					</div>
 				</div>
 			</div>
 			<div class="col-sm-6">
 				<div class="panel panel-default shade">
 					<div class="panel-heading">
-						<h2 class="panel-title">Additional information</h2>
+						<h2 class="panel-title">Professional Experience</h2>
 					</div>
 					<div class="panel-body lead">
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed hendrerit adipiscing blandit. Aliquam placerat, velit a fermentum fermentum, mi felis vehicula justo, a dapibus quam augue non massa. Duis euismod, augue et tempus consequat, lorem mauris porttitor quam, consequat ultricies mauris mi a metus. Phasellus congue, leo sed ultricies tristique, nunc libero tempor ligula, at varius mi nibh in nisi. Aliquam erat volutpat. Maecenas rhoncus, neque facilisis rhoncus tempus, elit ligula varius dui, quis amet.
+					Through my career I've built my background while focusing on eCommerce. While aside from my internship, I've only worked for one company, I have been exposed to a number of different tools:
+					<ul>
+						<li>The Atlassian Suite</li>
+						<li>Microsoft Office</li>
+						<li>SAP Hybris Suit</li>
+						<li>B2B and B2C eCommerce Systems</li>
+						<li>RubyMine</li>
+						<li>Eclipse</li>
+						<li>VisualStudio</li>
+						<li>Microsoft SQL Server</li>
+						<li>Command Line</li>
+					</ul>
+					<br>
+					I started on the eCommerce help desk but have worked my way to eComemrce Quality Assurance.  Currently I've been focusing on building my Ruby skills, but I really enjoy working on anything that is technically challenging.
 					</div>
 				</div>
 			</div>
-			<div class="text-vcenter">
-				<a href="#contact" class="btn btn-default btn-lg">Contact</a>
+			<div class="text-vcenter" id="resumeLinks">
+				<a href="${pageContext.request.contextPath}/Resources/Resume041317.pdf" target="_blank" class="btn btn-default btn-block">Official Resume Download</a>
+				<a href="#contact" class="btn btn-default btn-block">Contact</a>
 			</div>
 		</div>
 	</div>
@@ -275,8 +292,5 @@
 		<p class="contentContainer text-right">Copyright &copy; <a href="#home">James Beringer</a> 2017</p>
 	</div>
 </div>
-<!--TODO: CHECK OUT THE SITE BELOW TO FINISH THE PARALLAX DESGN
-https://www.script-tutorials.com/bootstrap-one-page-template-with-parallax-effect/
- -->
 </body>
 </html>

@@ -188,7 +188,7 @@ sup {
 }
 
 a {
-  color: #007bff;
+  color: #408080;
   text-decoration: none;
   background-color: transparent;
   -webkit-text-decoration-skip: objects;
@@ -1960,12 +1960,13 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  border: 1px solid transparent;
+  border: 1px solid black;
   padding: 0.5rem 0.75rem;
   font-size: 1rem;
   line-height: 1.25;
   border-radius: 0.25rem;
   transition: all 0.15s ease-in-out;
+  background-color: #eaf4f4e6;
 }
 
 .btn:focus, .btn:hover {
@@ -3285,11 +3286,15 @@ tbody.collapse.show {
 .navbar-nav {
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-direction: column;
-      flex-direction: column;
   padding-left: 0;
   margin-bottom: 0;
   list-style: none;
+  width: 35%;
+}
+
+.navbar-nav li {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .navbar-nav .nav-link {

@@ -357,7 +357,7 @@ input,textarea {
 /*NAV STYLING*/
 .navbar-fixed-top {
 	position: fixed;
-	background: #eaf4f4e6;
+	background: rgba(234, 244, 244, 0.9);
 	width: 100%;
 	z-index: 100;
 	top: 0px;

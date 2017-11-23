@@ -57,12 +57,12 @@
 	<title>James Beringer | Welcome!</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 	
-	<link href="${pageContext.request.contextPath}/styleSheets/bootstrap.css" rel="stylesheet" />
-	<link href="${pageContext.request.contextPath}/styleSheets/parallax.css" rel="stylesheet" />
+	<link href="${pageContext.request.contextPath}/styleSheets/bootstrap.min.css" rel="stylesheet" />
+	<link href="${pageContext.request.contextPath}/styleSheets/parallax.min.css" rel="stylesheet" />
 	
 	<script src="${pageContext.request.contextPath}/Resources/js/external/jquery/jquery.js"></script>
 	<script src="${pageContext.request.contextPath}/Resources/js/bootstrap.min.js"></script>
-	<script src="${pageContext.request.contextPath}/Resources/js/slide.js"></script>
+	<script src="${pageContext.request.contextPath}/Resources/js/slide.min.js"></script>
 </head>
 <body>
 <div class="navbar navbar-fixed-top">

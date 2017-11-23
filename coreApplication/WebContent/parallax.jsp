@@ -90,7 +90,7 @@
 <div id="home" class="home">
 	<div class="text-vcenter">
 		<h1>Welcome!</h1>
-		<h3>This is the website subtitle</h3>
+		<h3>Learn more about me...</h3>
 		<a href="#bio" class="btn btn-default btn-lg">Bio</a>
 	</div>
 </div>

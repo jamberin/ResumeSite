@@ -18,6 +18,7 @@ import javax.mail.internet.MimeMessage;
 import com.coreApplication.java.Props.GetProperties;
 import com.coreApplication.java.logger.DefaultLogger;
 import com.coreApplication.java.SQL.ContactController;
+import com.coreApplication.java.SQL.EmailAudit;
 
 public class JavaEmail {
 
@@ -55,41 +56,61 @@ public class JavaEmail {
 		}
 	}
 	
-	public void contactFormAction(String name, String email, String phone, String message, String emailBody) {
+	public Boolean contactFormAction(String name, String email, String phone, String message, String emailBody) {
 		Boolean chk = replyUtility(email);
 		if (chk == true) {
 			String subject = "Someone contacted you! FROM: " +  email;
 			String[] toLine = { "jamberin@gmail.com" };
-			//EmailAudit.writeRecord(name,email,message,phone);
 			createEmailMessage(emailBody, subject, toLine);
 			replyUtility(email);
+			EmailAudit.writeRecord(name,email,message,phone);
+			return chk;
 		} else {
-			//TODO: CREATE LOGGER MESSAGE FOR DENIED EMAIL
+			DefaultLogger.logMsg("[JavaEmail.java] Error at sendEmail | Bad String Entered ", "WARN");
+			return chk;
 		}
 	}
 	
 	private Boolean replyUtility(String email) {
-		Boolean chk = ContactController.permissionCheck(email);
-		String[] toLine = { email };
-		String body;
-		String subj;
-		if (chk == true) {
-			body = getEmailBody(GetProperties.getEmailTemplatePath("ContactConfirmation"));
-			subj = "We've got your message!";
-		} else if (chk == false) {
-			body = getEmailBody(GetProperties.getEmailTemplatePath("ContactViolation"));
-			subj = "Woah there! Looks like you're trying to contact too frequently...";
+		Boolean validate = checkEmail(email);
+		if (validate == true) {
+			Boolean chk = ContactController.permissionCheck(email);
+			String[] toLine = { email };
+			String body;
+			String subj;
+			if (chk == true) {
+				body = getEmailBody(GetProperties.getEmailTemplatePath("ContactConfirmation"));
+				subj = "We've got your message!";
+			} else if (chk == false) {
+				body = getEmailBody(GetProperties.getEmailTemplatePath("ContactViolation"));
+				subj = "Woah there! Looks like you're trying to contact too frequently...";
+			} else {
+				body = "An error has occurred trying to send the email! Please contact the system administrator by replying to this email!";
+				subj = "WHOOPS!";
+			}
+			setMailServerProperties();
+			createEmailMessage(body, subj, toLine);
+			try	{
+				sendEmail();
+			} catch (MessagingException e) {
+				e.printStackTrace();
+				DefaultLogger.logMsg("[JavaEmail.java] Error at replyUtility | MessagingException: " + e.getMessage(), "ERR");
+			}
+			return chk;
 		} else {
-			body = "An error has occurred trying to send the email! Please contact the system administrator by replying to this email!";
-			subj = "WHOOPS!";
+			return validate;
 		}
-		setMailServerProperties();
-		createEmailMessage(body, subj, toLine);
-		try	{
-			sendEmail();
-		} catch (MessagingException e) {
-			e.printStackTrace();
-			DefaultLogger.logMsg("[JavaEmail.java] Error at replyUtility | MessagingException: " + e.getMessage(), "ERR");
+		
+	}
+	
+	private Boolean checkEmail(String email) {
+		boolean chk = true;
+		try {
+			InternetAddress emailAddr = new InternetAddress(email);
+			emailAddr.validate();
+		} catch (AddressException e) {
+			chk = false;
+			DefaultLogger.logMsg("[JavaEmail.java] Warning at checkEmail | AddressException: " + e.getMessage(), "WARN");
 		}
 		return chk;
 	}

@@ -12,6 +12,7 @@
 		String phone = "";
 		String emailMessage = "";
 		String emailBody = "";
+		boolean chk;
 		if (request.getParameter("name") != null) {
 			emailBody = "Sender Name: " + request.getParameter("name") + "<br>";
 			name = request.getParameter("name");
@@ -29,17 +30,23 @@
 			emailMessage = request.getParameter("message");
 		}
 		
-		javaEmail.contactFormAction(name, email, phone, emailMessage, emailBody);
-		
-		try {
-			javaEmail.sendEmail();
-			status = "success";
-			message = "Email sent Successfully!";
-		} catch (MessagingException me) {
+		chk = javaEmail.contactFormAction(name, email, phone, emailMessage, emailBody);
+		if (chk == true) {
+			try {
+				javaEmail.sendEmail();
+				status = "success";
+				message = "Your message has been sent! I'll get back to you as soon as I can! Thanks! ";
+			} catch (MessagingException me) {
+				status = "error";
+				message = "Something went wrong! Contact <a href='mailto:beringer.tech@gmail.com'>webmaster</a>.";
+				me.printStackTrace();
+			}
+		} else {
 			status = "error";
-			message = "Error in Sending Email!";
-			me.printStackTrace();
+			message = "Something was entered incorrectly, please try again!";
+			
 		}
+		
 	}
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -283,7 +290,13 @@
 				<div class = "field">
 					<textarea id = "about-project" name = "message"	placeholder = "enter your message here"></textarea>
 				</div>
-				<div id = "mail-status"></div>
+				<div>
+				<%
+					if (null != message) {
+						out.println("<div class='" + status + "'>" + message + "</div>");
+					}
+				%>
+				</div>
 				<input type = "submit" name = "submit" value = "Send Message"	id = "send-message">
 			</form>
 		</div>
